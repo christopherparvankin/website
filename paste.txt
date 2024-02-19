@@ -1,0 +1,438 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.App {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: bisque;
+  font-family: 'Times New Roman', Times, serif;
+  background-image: url("../assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Remove or adjust the min-height property */
+}
+
+.App .dancingShaun {
+  display: flex;
+  align-self: center;
+  height: 100vh;
+}
+___________
+
+import React from 'react'
+import { useState, useEffect } from 'react';
+import "./styles/App.css";
+import Navigator from "./components/Navigator";
+import Projects from "./components/Projects"
+import Fun from "./components/Fun"
+import Home from "./components/Home"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Song from '/Users/chrisparvankin/Desktop/CS/CS_Projects/personal_website/src/assets/proffygad.mp3';
+import Sheep from '/Users/chrisparvankin/Desktop/CS/CS_Projects/personal_website/src/assets/dancing-icegif-1.gif';
+
+function App() {
+  const shaun = <img src={Sheep} alt="Dancing Sheep" className="dancingShaun"/>
+  const [shaunBool, toggleShaun] = useState(false)
+  const [audio] = useState(new Audio(Song));
+
+  
+
+  useEffect(() => {
+    if (shaunBool) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [shaunBool, audio])
+  return (
+    <div className="App">
+      <Router>
+      <Navigator handleShaun = {toggleShaun} s_bool = {shaunBool}/> 
+        {shaunBool && shaun}
+          <Routes>
+            <Route path='/' exact element={<Home />} />
+            <Route path='/projects' exact element={<Projects />} />
+            <Route path='/fun' exact element={<Fun />} />
+          </Routes>
+          
+     
+      </Router>
+    </div>
+  );
+}
+
+export default App;
+____________
+.nav {
+  height: 80px;
+  flex: 0 0 auto;
+  background-color: #202125;
+  color: azure;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0; /* Set to 0 to keep the navigation bar at the top */
+  width: 100%;
+  font-family:sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.left {
+  display: flex;
+  width: 33.3333%;
+  align-items: center;
+}
+
+.left img {
+  transform: rotate(1deg);
+  width: 8rem; 
+  /* width:8.5vw; */
+  transition: width 0.3s ease;
+  margin-top: 25px;
+}
+
+.nav .left:hover img {
+  filter: hue-rotate(180deg);
+  width: 8.5rem; /* Change to hue rotation of 180 degrees (purple) on hover */
+}
+
+.middle {
+  flex: 1;
+  width: 33.3333%;
+  /* gap:15px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: font-size 0.3s ease;
+  /* background-color: #9ed8f9; */
+}
+
+.middle a {
+  color: azure;
+  text-decoration: none;
+  transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.nav .middle a:hover {
+  color: #9ed8f9;
+  font-size: 1.75rem;
+}
+
+.nav .right .iconE:hover {
+  color: #9ed8f9;
+  transition: font-size 0.3s ease;
+  font-size: 2.3rem;
+}
+.nav .right .iconG:hover {
+  color: #9ed8f9;
+  transition: font-size 0.3s ease;
+  font-size: 2.3rem;
+}
+.nav .right .iconL:hover {
+  color: #9ed8f9;
+  transition: font-size 0.3s ease;
+  font-size: 2.3rem;
+}
+
+
+
+.nav .right .iconS:hover {
+  color: #9ed8f9;
+  transition: font-size 0.3s ease;
+  font-size: 2.3rem;
+}
+
+.nav .right .iconS {
+  transition: font-size 0.3s ease;
+  font-size: 2rem;
+}
+
+.nav .right .iconE {
+  transition: font-size 0.3s ease;
+  font-size: 2rem;
+}
+.nav .right .iconG {
+  transition: font-size 0.3s ease;
+  font-size: 2rem;
+}
+.nav .right .iconL {
+  transition: font-size 0.3s ease;
+  font-size: 2rem;
+}
+
+.nav .right {
+  height: 80px;
+  display: flex;
+  width: 33.3333%;
+  font-size: 2rem;
+  transition: font-size 0.3s ease;
+  
+}
+
+.left .left1 {
+ 
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+  /* background-color: #9ed8f9; */
+}
+
+.left .right1 {
+  flex: 0 0 auto;
+  display: flex;
+  width: 50%;
+  /* background-color: aquamarine; */
+}
+
+.right .left1 {
+  flex: 0 0 auto;
+  display: flex;
+  width: 50%;
+  margin-right: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  gap:15px;
+}
+.right .right1 {
+  flex: 0 0 auto;
+  display: flex;
+  margin-left: 0px;
+  align-items: center;
+  gap:15px;
+  width: 50%;
+}
+
+.middle .left1 {
+  flex: 0 0 auto;
+  display: flex;
+  width: 50%;
+  margin-right: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  gap:15px;
+}
+.middle .right1 {
+  flex: 0 0 auto;
+  display: flex;
+  margin-left: 0px;
+  align-items: center;
+  gap:15px;
+  width: 50%;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+  .nav .left .right1 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav .middle a {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .nav .middle a {
+    width: 70px;
+  }
+  .nav .left {
+    padding-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .nav .right {
+    display: none;
+  }
+}
+
+.middle .fun-link {
+  position: relative;
+  cursor: pointer;
+  color: azure;
+}
+
+.fun-dropdown-content {
+  position: absolute;
+  top: 100%;
+  flex-direction: column;
+  color: azure;
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden; /* Use visibility instead of display */
+  transition: max-height 2s ease, visibility 2s ease; /* Add transitions for smoother height change and visibility */
+  background-color: #202125;
+}
+
+.middle .fun-link:hover + .fun-dropdown-content,
+.middle .fun-link:hover .fun-dropdown-content {
+  visibility: visible;
+  max-height: 250px;
+  transition: max-height 4s ease, visibility 4s ease;
+}
+
+.fun-dropdown-content a {
+  color: azure;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.fun-dropdown-content a:hover {
+  background-color: #404245;
+}
+
+
+___________
+
+import React, { useState } from 'react';
+import '../styles/Navigator.css';
+import k_y from '../assets/killroy.svg';
+import { Link } from 'react-router-dom';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+
+function Navigator({ handleShaun, s_bool }) {
+  const [showFunDropdown, setShowFunDropdown] = useState(false);
+
+  function tog() {
+    handleShaun((prevSBool) => !prevSBool);
+  }
+
+  return (
+    <div className="nav">
+      <div className="left">
+        <div className="left1"> 
+          <img src={k_y} alt="dd" />
+        </div>
+        <div className="right1"> 
+          <p>Chris Parvankin!</p>
+        </div>
+      </div>
+      <div className="middle">
+        <div className='left1'> 
+        <Link to="/"> Home</Link>
+        
+        <Link to="/fun"> Fun</Link>
+        </div>
+        <div className='right1'>
+        <Link to="/about"> About</Link>
+        <Link to="/projects"> Projects</Link>
+        </div>
+      </div>
+      <div className='right'>
+        <div className='left1'>
+          {!s_bool ? <PlayCircleOutlineIcon onClick={tog} className="iconS"/> : <PauseCircleOutlineIcon onClick={tog} className="iconS"/>}
+          <LinkedInIcon className="iconL" />
+        </div> 
+        <div className='right1'>
+          <EmailIcon className="iconE" />
+          <GitHubIcon className="iconG" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Navigator;
+___________
+
+body, html {
+  overflow: hidden;
+  /* overflow-y: auto; */
+}
+
+.home {
+  flex: 1;
+  background-color: #202125;
+  display: flex;
+  font-family: sans-serif;
+  width: 100%;
+  font-weight: bold;
+  color: white;
+  /* overflow-y: auto; */
+
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.home .l1 {
+  font-size: 200%;
+}
+
+.home .l2 {
+  display: flex;
+  font-size: 150%;
+  color: rgb(153, 150, 150);
+  justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .home .l2 {
+    display: none;
+  }
+}
+____________
+import React from 'react';
+import '../styles/Home.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+const p1 = "Christopher Parvankin";
+const p3 = "AmeriCorps Alumnus | Brown University Student | Barrel Rider";
+const p2 = "Renasauce Man | Computer Whiz | entreyprenoor";
+
+
+function Home() {
+  return (
+    <div className='home'>
+      <div className="home-container">
+     
+          <div className="l1">
+            {p1}
+          </div>
+        
+          <div className='l2'>
+            {p2}
+          </div>
+    </div>
+    </div>
+  )};
+
+
+export default Home;
+__________
+
+display: flex;
+  flex-direction: column;
+  margin-bottom: auto;
+  background-color: aquamarine;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height:max-content;
+  align-self: flex-start; /* Align at the top of the container */
+  margin-bottom: auto;
+  flex-direction: row;

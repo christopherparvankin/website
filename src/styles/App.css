@@ -1,0 +1,46 @@
+:root {
+  --nav-background-color: #202125;
+  --nav-font-color: azure;
+  /* --nav-font-size: 1.5rem; */
+  --nav-font-size: 1.75vw;
+  --hover-color: #9ed8f9;
+  --icon-size:2.5vw;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100vh;
+  
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.App {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Times New Roman', Times, serif;
+  background-image: url("../assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh; 
+}
+
+
+
+.App .dancingShaun {
+  display: flex;
+  align-self: center;
+  width:40vw;
+  
+}
